@@ -6,7 +6,6 @@ import br.com.codeelevate.ce_sage_catalog.service.BookConsultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -46,6 +45,17 @@ public class BookConsultController {
         return ResponseEntity.ok()
                 .header(HTTP_HEADER_FAPI_INTERACTION_ID, httpHeaders.getFirst(HTTP_HEADER_FAPI_INTERACTION_ID))
                 .body(bookConsultService.consultBookByGenre(genre));
+    }
+
+    @GetMapping(value ="/book")
+    public ResponseEntity<RsponseBookListConsultDTO> getAllBooks(
+            @RequestParam Integer pageSize,
+            @RequestParam Integer size,
+            @RequestHeader HttpHeaders httpHeaders){
+
+        return ResponseEntity.ok()
+                .header(HTTP_HEADER_FAPI_INTERACTION_ID, httpHeaders.getFirst(HTTP_HEADER_FAPI_INTERACTION_ID))
+                .body(bookConsultService.consultAllBooks(pageSize, size));
     }
 
 }

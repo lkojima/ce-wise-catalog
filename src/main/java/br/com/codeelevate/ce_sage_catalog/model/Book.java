@@ -1,16 +1,19 @@
 package br.com.codeelevate.ce_sage_catalog.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+@Document(collection = "books")
 public class Book {
-    private Integer id;
+    @Id
+    private String _id;
     private String title;
     private String author;
     private String publisher;
-    private Double price;
+    private String genre;
+    private String subGenre;
 }
