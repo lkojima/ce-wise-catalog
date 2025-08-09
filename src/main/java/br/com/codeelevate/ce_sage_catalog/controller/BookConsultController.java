@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/v1/consult")
+@RequestMapping(value = "/books")
 public class BookConsultController {
 
     @Autowired
@@ -17,7 +17,7 @@ public class BookConsultController {
 
     private static final String HTTP_HEADER_FAPI_INTERACTION_ID = "x-fapi-interaction-id";
 
-    @GetMapping(value ="/book/{bookId}")
+    @GetMapping(value ="/{bookId}")
     public ResponseEntity<RsponseBookConsultDTO> getBookById(
             @PathVariable("bookId") String bookId,
             @RequestHeader HttpHeaders httpHeaders){
@@ -27,7 +27,7 @@ public class BookConsultController {
                 .body(bookConsultService.consultBookById(bookId));
     }
 
-    @GetMapping(value ="/book/author/{authorName}")
+    @GetMapping(value ="/author/{authorName}")
     public ResponseEntity<RsponseBookListConsultDTO> getBookByAuthorName(
             @PathVariable("authorName") String authorName,
             @RequestHeader HttpHeaders httpHeaders){
@@ -37,7 +37,7 @@ public class BookConsultController {
                 .body(bookConsultService.consultBookByAuthor(authorName));
     }
 
-    @GetMapping(value ="/book/genre/{genre}")
+    @GetMapping(value ="/genre/{genre}")
     public ResponseEntity<RsponseBookListConsultDTO> getBookByGenre(
             @PathVariable("genre") String genre,
             @RequestHeader HttpHeaders httpHeaders){
@@ -47,7 +47,7 @@ public class BookConsultController {
                 .body(bookConsultService.consultBookByGenre(genre));
     }
 
-    @GetMapping(value ="/book")
+    @GetMapping(value ="")
     public ResponseEntity<RsponseBookListConsultDTO> getAllBooks(
             @RequestParam Integer pageSize,
             @RequestParam Integer size,

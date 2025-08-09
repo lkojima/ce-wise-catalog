@@ -1,5 +1,6 @@
 package br.com.codeelevate.ce_sage_catalog.model.dto;
 
+import br.com.codeelevate.ce_sage_catalog.model.Book;
 import lombok.*;
 
 @Getter
@@ -8,10 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RsponseBookConsultDTO {
-    private Integer id;
-    private String title;
-    private String author;
-    private String publisher;
-    private Double price;
+    private Book data;
 
 }

@@ -1,5 +1,6 @@
 package br.com.codeelevate.ce_sage_catalog.model.dto;
 
+import br.com.codeelevate.ce_sage_catalog.model.Book;
 import lombok.*;
 
 import java.util.List;
@@ -10,5 +11,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RsponseBookListConsultDTO {
-    private List<br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookConsultDTO> consultBookList;
+    private List<Book> data;
 }
