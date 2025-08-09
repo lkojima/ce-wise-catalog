@@ -7,11 +7,8 @@ import br.com.codeelevate.ce_sage_catalog.repository.BookConsultRepository;
 import br.com.codeelevate.ce_sage_catalog.service.BookConsultService;
 import com.mongodb.client.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-import org.bson.Document;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,10 +48,12 @@ public class BookConsultServiceImpl implements BookConsultService {
 
     @Override
     public RsponseBookListConsultDTO consultAllBooks(Integer page, Integer pageSize) {
-        List<Book> book = bookConsultRepository.findAll();
-        System.out.println("bookConsultRepository.findById(genre)");
+
+        Pageable pageable = PageRequest.of(page, pageSize);
+        List<Book> listOfBooks = bookConsultRepository.findAll(pageable).getContent();
+
         return RsponseBookListConsultDTO.builder()
-                .data(book)
+                .data(listOfBooks)
                 .build();
     }
 }

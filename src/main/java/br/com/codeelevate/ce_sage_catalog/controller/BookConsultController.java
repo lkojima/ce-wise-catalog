@@ -49,13 +49,13 @@ public class BookConsultController {
 
     @GetMapping(value ="")
     public ResponseEntity<RsponseBookListConsultDTO> getAllBooks(
+            @RequestParam Integer page,
             @RequestParam Integer pageSize,
-            @RequestParam Integer size,
             @RequestHeader HttpHeaders httpHeaders){
 
         return ResponseEntity.ok()
                 .header(HTTP_HEADER_FAPI_INTERACTION_ID, httpHeaders.getFirst(HTTP_HEADER_FAPI_INTERACTION_ID))
-                .body(bookConsultService.consultAllBooks(pageSize, size));
+                .body(bookConsultService.consultAllBooks(page, pageSize));
     }
 
 }

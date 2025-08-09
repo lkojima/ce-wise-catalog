@@ -16,15 +16,14 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     private static final String[] AUTH_WHITELIST = {
             "/configuration/ui",
-            "/configuration/security",
-            "/books/**"
+            "/configuration/security"
     };
 
 
 //    @Bean
 //    @Order(1)
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests(req -> req.requestMatchers("/v1/consult/**").permitAll())
+//        http.authorizeHttpRequests(req -> req.requestMatchers("/books/**").permitAll())
 //                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 //                .httpBasic(Customizer.withDefaults());
 //
