@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ce-sage-catalog
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: local
+server:
+  port: 8080
+  servlet:
+    context-path: /ce-wise-catalog
