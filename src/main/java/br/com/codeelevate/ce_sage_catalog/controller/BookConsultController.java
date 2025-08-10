@@ -3,6 +3,7 @@ package br.com.codeelevate.ce_sage_catalog.controller;
 import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookConsultDTO;
 import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookListConsultDTO;
 import br.com.codeelevate.ce_sage_catalog.service.BookConsultService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class BookConsultController {
     @GetMapping(value ="/{bookId}")
     public ResponseEntity<RsponseBookConsultDTO> getBookById(
             @PathVariable("bookId") String bookId,
-            @RequestHeader HttpHeaders httpHeaders){
+            @RequestHeader HttpHeaders httpHeaders) throws JsonProcessingException {
 
         return ResponseEntity.ok()
                 .header(HTTP_HEADER_FAPI_INTERACTION_ID, httpHeaders.getFirst(HTTP_HEADER_FAPI_INTERACTION_ID))
@@ -56,6 +57,15 @@ public class BookConsultController {
         return ResponseEntity.ok()
                 .header(HTTP_HEADER_FAPI_INTERACTION_ID, httpHeaders.getFirst(HTTP_HEADER_FAPI_INTERACTION_ID))
                 .body(bookConsultService.consultAllBooks(page, pageSize));
+    }
+
+    @GetMapping(value ="/recently")
+    public ResponseEntity<RsponseBookListConsultDTO> getRecentlyBooks(
+            @RequestHeader HttpHeaders httpHeaders){
+
+        return ResponseEntity.ok()
+                .header(HTTP_HEADER_FAPI_INTERACTION_ID, httpHeaders.getFirst(HTTP_HEADER_FAPI_INTERACTION_ID))
+                .body(bookConsultService.consultRecentlyBooks());
     }
 
 }

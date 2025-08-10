@@ -3,9 +3,13 @@ spring:
     name: ce-sage-catalog
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: local
+      host: ${SPRING_DATA_MONGODB_HOST:localhost}
+      port: ${SPRING_DATA_MONGODB_PORT:27017}
+      database: ${SPRING_DATA_MONGODB_DATABASE:local}
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+      password: ${SPRING_REDIS_PASSWORD}
 server:
   port: 8080
   servlet:
