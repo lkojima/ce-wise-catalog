@@ -81,7 +81,7 @@ public class BookConsultServiceImpl implements BookConsultService {
     @Override
     public RsponseBookListConsultDTO consultBookByGenre(String genre) {
         Optional<List<Book>> book = bookConsultRepository.findByGenre(genre);
-        System.out.println("bookConsultRepository.findById(genre)");
+        System.out.println(book);
 
         if(book.isEmpty()) {
             throw new NotFoundException("Not found books for genre: " + genre);

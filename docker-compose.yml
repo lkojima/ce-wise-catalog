@@ -7,14 +7,15 @@ services:
       - "8080:8080"
     depends_on:
       - redis
-      - mongodb
+      - wise-catalog-mongo
     environment:
       - SPRING_REDIS_HOST=redis
       - SPRING_REDIS_PORT=6379
       - SPRING_REDIS_PASSWORD=wisepass
-      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_HOST=wise-catalog-mongo
       - SPRING_DATA_MONGODB_PORT=27017
-      - SPRING_DATA_MONGODB_DATABASE=local
+      - SPRING_DATA_MONGODB_DATABASE=wise-catalog-mongo
+      - JWT_SECRET=srv-token-secret
 
   redis:
     image: redis:latest
@@ -23,7 +24,7 @@ services:
     volumes:
       - redis_data:/data
 
-  mongodb:
+  wise-catalog-mongo:
     image: mongo:latest
     ports:
       - "27017:27017"

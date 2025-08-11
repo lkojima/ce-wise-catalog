@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copia o jar construído para o container
-COPY target/ce-sage-catalog-0.0.1.jar app.jar
+COPY target/ce-sage-catalog-0.0.4.jar app.jar
 
 # Expõe a porta que sua aplicação roda (exemplo 8080)
 EXPOSE 8080

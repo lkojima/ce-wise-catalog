@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface BookConsultRepository extends MongoRepository<Book, String> {
     Optional<List<Book>>findByAuthor(String authorName);
-
     Optional<List<Book>> findByGenre(String genre);
+    Optional<List<Book>> findByTitle(String title);
 }
