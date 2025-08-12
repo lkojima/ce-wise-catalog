@@ -1,4 +1,4 @@
-package br.com.codeelevate.ce_sage_catalog.service;
+package br.com.codeelevate.ce_sage_catalog.service.impl;
 
 import br.com.codeelevate.ce_sage_catalog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthorizationService implements UserDetailsService {
+public class AuthorizationServiceImpl implements UserDetailsService {
 
     @Autowired private UserRepository repository;
     @Override

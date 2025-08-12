@@ -34,9 +34,8 @@ class AuthenticationControllerTest {
 
     @Test
     void testLoginSuccess() {
-        // Arrange
         AuthenticationDTO dto = new AuthenticationDTO("user", "pass");
-        UserEntity userEntity = new UserEntity("user", "encodedPass", UserRole.USER);
+        UserEntity userEntity = new UserEntity("user", "encodedPass",UserRole.USER);
         Authentication authentication = mock(Authentication.class);
 
         when(authentication.getPrincipal()).thenReturn(userEntity);
@@ -44,10 +43,8 @@ class AuthenticationControllerTest {
                 .thenReturn(authentication);
         when(tokenService.generateToken(userEntity)).thenReturn("fake-jwt");
 
-        // Act
         ResponseEntity<LoginResponseDTO> response = controller.login(dto);
 
-        // Assert
         assertEquals(200, response.getStatusCodeValue());
         assertEquals("fake-jwt", response.getBody().token());
         verify(authenticationManager).authenticate(any(UsernamePasswordAuthenticationToken.class));

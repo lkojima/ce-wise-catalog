@@ -1,19 +1,19 @@
 package br.com.codeelevate.ce_sage_catalog.service;
 
 import br.com.codeelevate.ce_sage_catalog.repository.UserRepository;
+import br.com.codeelevate.ce_sage_catalog.service.impl.AuthorizationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class AuthorizationServiceTest {
+class AuthorizationServiceImplTest {
 
     @InjectMocks
-    private AuthorizationService authorizationService;
+    private AuthorizationServiceImpl authorizationServiceImpl;
 
     @Mock
     private UserRepository userRepository;
@@ -29,7 +29,7 @@ class AuthorizationServiceTest {
         UserDetails userDetails = mock(UserDetails.class);
         when(userRepository.findByLogin(username)).thenReturn(userDetails);
 
-        UserDetails result = authorizationService.loadUserByUsername(username);
+        UserDetails result = authorizationServiceImpl.loadUserByUsername(username);
 
         assertNotNull(result);
         assertEquals(userDetails, result);
@@ -40,7 +40,7 @@ class AuthorizationServiceTest {
         String username = "unknownUser";
         when(userRepository.findByLogin(username)).thenReturn(null);
 
-        UserDetails result = authorizationService.loadUserByUsername(username);
+        UserDetails result = authorizationServiceImpl.loadUserByUsername(username);
         assertNull(result);
     }
 }

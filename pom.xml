@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.codeelevate</groupId>
 	<artifactId>ce-sage-catalog</artifactId>
-	<version>0.0.4</version>
+	<version>1.0.0</version>
 	<name>ce-sage-catalog</name>
 	<description>API que permite que os clientes naveguem pelos livros disponíveis por gênero e autor</description>
 	<url/>
