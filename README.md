@@ -4,14 +4,14 @@ O projeto consiste em uma API Restful, onde possibilita consultas de livros por 
 O projeto possui um endpoint de alimentação da base de dados, onde é possível cadastrar uma lista de livros por gênero.
 Foi utilizado Java 17 + Spring 3 na implementação do sistema
 
-### Design Pattern
+## Design Pattern
 O Design pattern da aplicação foi desenvolvido em uma arquitetura MVC (Model View Controller) onde a separação das camadas foi entre Model e Controller
 Onde a controller é o intermédio entre view e model, é a camada em que recebe as requisições do usuário, View, a camada onde são apresentados os dados so usuário e Model, a camada que é responsável pela lógica e 
 regras funcionais da aplicação.
 É uma arquitetura simples, onde é fortemente recomendado a utilização em sistemas com integrações visuais (front-end).
 ### Organização de pastas
 - A camada de controller, foi adicionada em uma pasta específica "controller"
-- A cada de model, foi adicionada em uma pasta "service"
+- A camada de model, foi adicionada em uma pasta "service"
 - A camada view não foi impolementada, pois não há desenvolvimento fron-end
 - Pasta "client" foi adicionada para tratar chamadas externas ao projeto
 - Pasta "client", adicionada para configurações de segurança, redis e restTemplate
@@ -26,7 +26,7 @@ Para rodar os testes, clique com o botão direito na pasta "/src/test/java/br.co
 O projeto encontra-se disponível no repositório do GitHub
 [link] https://github.com/lkojima/ce-wise-catalog
 
-### Pré-requisitos
+## Pré-requisitos
 
 Pré requisitos para rodar o projeto localmente em um container Docker
 - Docker
