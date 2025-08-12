@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "b64d80cd-a191-4072-b17c-10b551ba1ca7",
+		"name": "The Wise Catalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23676408"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-fapi-interaction-id",
+						"value": "0c31aa94-4f6c-4181-aa92-e34f1fdbc803",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/ce-wise-catalog/books?page=3&pageSize=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-wise-catalog",
+						"books"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "3"
+						},
+						{
+							"key": "pageSize",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Author",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ce-wise-catalog/books/author/J. K. Rowling",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-wise-catalog",
+						"books",
+						"author",
+						"J. K. Rowling"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Genre",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ce-wise-catalog/books/genre/music",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-wise-catalog",
+						"books",
+						"genre",
+						"music"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recently",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ce-wise-catalog/books/recently",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-wise-catalog",
+						"books",
+						"recently"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ce-wise-catalog/books/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-wise-catalog",
+						"books",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert by Genre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ce-wise-catalog/insert/books/fantasy",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-wise-catalog",
+						"insert",
+						"books",
+						"fantasy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"lkojima\",\r\n    \"password\": \"lkojima\",\r\n    \"role\": \"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ce-wise-catalog/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-wise-catalog",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let token = pm.response.json();\r",
+							"pm.environment.set(\"token\", token.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"lkojima\",\r\n    \"password\": \"lkojima\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ce-wise-catalog/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ce-wise-catalog",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

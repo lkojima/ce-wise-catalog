@@ -17,7 +17,7 @@ regras funcionais da aplicação.
 - Pasta "client", adicionada para configurações de segurança, redis e restTemplate
 - "exception.handler" para adicionar as tratativas de erros
 - "model" para armazenar os objetos
-- "reposutory" que contém as classes resposáveis por realizar conexões com o banco de dados
+- "repository" que contém as classes resposáveis por realizar conexões com o banco de dados
 
 ### Testes Unitários
 Localizado na pasta /src/test/java/br.com.codeelevate.ce_sage_catalog
@@ -154,6 +154,10 @@ Para adicionar o token na requisição:
 
 #### Insert
 - POST /ce-wise-catalog/insert/books/{genre} - Insere todos os livros disponíveis em openlibrary (https://openlibrary.org/) por gênero
+
+#### Postman
+- A collection do postman encontra-se no arquivo the-wise-catalog.postman_collection.json
+- a Environment encontra-se no arquivo wise-environment.postman_environment.json
 
 ## Melhorias e Considerações finais
 ### Melhorias
