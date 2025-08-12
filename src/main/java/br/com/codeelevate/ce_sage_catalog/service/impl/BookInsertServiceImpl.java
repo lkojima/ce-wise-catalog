@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class BookInsertControllerImpl implements BookInsertService {
+public class BookInsertServiceImpl implements BookInsertService {
 
     @Autowired
     ConsultBooksClient consultBooksClient;

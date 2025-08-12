@@ -31,8 +31,8 @@ public class BookConsultServiceImpl implements BookConsultService {
     private static final String UNIQUE_KEY = "books";
 
     @Autowired private ObjectMapper mapper;
-    @Override public RsponseBookConsultDTO consultBookById(String bookId) throws JsonProcessingException {
 
+    @Override public RsponseBookConsultDTO consultBookById(String bookId) throws JsonProcessingException {
 
         if(redisTemplate.hasKey(bookId)){
             JavaType type = mapper.getTypeFactory().constructType(Book.class);
