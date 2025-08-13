@@ -2,12 +2,14 @@ package br.com.codeelevate.ce_sage_catalog.service.impl;
 
 import br.com.codeelevate.ce_sage_catalog.client.ConsultBooksClient;
 import br.com.codeelevate.ce_sage_catalog.model.Book;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookListConsultDTO;
 import br.com.codeelevate.ce_sage_catalog.model.dto.consult.BookConsultDTO;
 import br.com.codeelevate.ce_sage_catalog.model.dto.consult.Counter;
 import br.com.codeelevate.ce_sage_catalog.model.dto.consult.WorksDTO;
 import br.com.codeelevate.ce_sage_catalog.repository.BookConsultRepository;
 import br.com.codeelevate.ce_sage_catalog.service.BookInsertService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
@@ -31,7 +33,7 @@ public class BookInsertServiceImpl implements BookInsertService {
     private MongoOperations mongoOperations;
 
     @Override
-    public void insertBooksByAuthor(String genre) throws JsonProcessingException {
+    public JsonNode insertBooksByGenre(String genre) throws JsonProcessingException {
 
         String listString = consultBooksClient.consultBooksByAuthor(genre);
         List<Book> bookList = transformToListBook(listString);
@@ -43,6 +45,9 @@ public class BookInsertServiceImpl implements BookInsertService {
                 System.out.println("Insert: " + book.toString());
             }
         }
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.valueToTree(bookList);
     }
 
     private String getNextSequence(String subjectSeq) {

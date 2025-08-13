@@ -1,5 +1,6 @@
 package br.com.codeelevate.ce_sage_catalog.service;
 
+import br.com.codeelevate.ce_sage_catalog.exception.handler.NotFoundException;
 import br.com.codeelevate.ce_sage_catalog.repository.UserRepository;
 import br.com.codeelevate.ce_sage_catalog.service.impl.AuthorizationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,10 +38,13 @@ class AuthorizationServiceImplTest {
 
     @Test
     void loadUserByUsername_userNotFound_throwsException() {
-        String username = "unknownUser";
+        String username = "missing";
         when(userRepository.findByLogin(username)).thenReturn(null);
 
-        UserDetails result = authorizationServiceImpl.loadUserByUsername(username);
-        assertNull(result);
+        NotFoundException exception = assertThrows(NotFoundException.class,
+                () -> authorizationServiceImpl.loadUserByUsername(username));
+
+        assertEquals("Not found any user with this credentials", exception.getMessage());
+        verify(userRepository).findByLogin(username);
     }
 }

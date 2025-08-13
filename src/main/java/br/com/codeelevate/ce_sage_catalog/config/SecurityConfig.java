@@ -1,5 +1,6 @@
 package br.com.codeelevate.ce_sage_catalog.config;
 
+import br.com.codeelevate.ce_sage_catalog.filter.SecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

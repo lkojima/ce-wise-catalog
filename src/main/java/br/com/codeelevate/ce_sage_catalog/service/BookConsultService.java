@@ -1,17 +1,17 @@
 package br.com.codeelevate.ce_sage_catalog.service;
 
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookConsultDTO;
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookListConsultDTO;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookConsultDTO;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookListConsultDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface BookConsultService {
-    public RsponseBookConsultDTO consultBookById(String bookId) throws JsonProcessingException;
+    public ResponseBookConsultDTO consultBookById(String bookId) throws JsonProcessingException;
 
-    public RsponseBookListConsultDTO consultBookByAuthor(String authorName);
+    public ResponseBookListConsultDTO consultBookByAuthor(String authorName);
 
-    public RsponseBookListConsultDTO consultBookByGenre(String genre);
+    public ResponseBookListConsultDTO consultBookByGenre(String genre);
 
-    public RsponseBookListConsultDTO consultAllBooks(Integer page, Integer pageSize);
+    public ResponseBookListConsultDTO consultAllBooks(Integer page, Integer pageSize);
 
-    public RsponseBookListConsultDTO consultRecentlyBooks();
+    public ResponseBookListConsultDTO consultRecentlyBooks();
 }

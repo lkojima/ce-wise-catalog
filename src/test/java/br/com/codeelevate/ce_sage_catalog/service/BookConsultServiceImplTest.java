@@ -3,20 +3,16 @@ package br.com.codeelevate.ce_sage_catalog.service;
 
 import br.com.codeelevate.ce_sage_catalog.exception.handler.NotFoundException;
 import br.com.codeelevate.ce_sage_catalog.model.Book;
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookConsultDTO;
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookListConsultDTO;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookConsultDTO;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookListConsultDTO;
 import br.com.codeelevate.ce_sage_catalog.repository.BookConsultRepository;
 import br.com.codeelevate.ce_sage_catalog.service.impl.BookConsultServiceImpl;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
-import org.mockito.quality.Strictness;
 import org.springframework.data.domain.*;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -24,10 +20,8 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -75,7 +69,7 @@ public class BookConsultServiceImplTest {
         Book sampleBook = new Book();
         sampleBook.set_id(bookId);
 
-        RsponseBookConsultDTO response = service.consultBookById(bookId);
+        ResponseBookConsultDTO response = service.consultBookById(bookId);
 
         assertNotNull(response);
         assertEquals(bookId, response.getData().get_id());
@@ -96,7 +90,7 @@ public class BookConsultServiceImplTest {
         when(repository.findById(bookId)).thenReturn(Optional.of(book));
         when(redisTemplate.opsForList()).thenReturn(listOperations);
         when(redisTemplate.opsForValue()).thenReturn(valueOperations);
-        RsponseBookConsultDTO result = service.consultBookById(bookId);
+        ResponseBookConsultDTO result = service.consultBookById(bookId);
 
         assertNotNull(result);
         assertEquals(bookId, result.getData().get_id());
@@ -130,7 +124,7 @@ public class BookConsultServiceImplTest {
 
         when(repository.findByAuthor(authorName)).thenReturn(Optional.of(books));
 
-        RsponseBookListConsultDTO response = service.consultBookByAuthor(authorName);
+        ResponseBookListConsultDTO response = service.consultBookByAuthor(authorName);
 
         assertNotNull(response);
         assertEquals(2, response.getData().size());
@@ -165,7 +159,7 @@ public class BookConsultServiceImplTest {
 
         when(repository.findByGenre(genre)).thenReturn(Optional.of(books));
 
-        RsponseBookListConsultDTO response = service.consultBookByGenre(genre);
+        ResponseBookListConsultDTO response = service.consultBookByGenre(genre);
 
         assertNotNull(response);
         assertEquals(2, response.getData().size());
@@ -203,7 +197,7 @@ public class BookConsultServiceImplTest {
 
         when(repository.findAll(PageRequest.of(page, pageSize))).thenReturn(bookPage);
 
-        RsponseBookListConsultDTO response = service.consultAllBooks(page, pageSize);
+        ResponseBookListConsultDTO response = service.consultAllBooks(page, pageSize);
 
         assertNotNull(response);
         assertEquals(2, response.getData().size());
@@ -241,7 +235,7 @@ public class BookConsultServiceImplTest {
         when(redisTemplate.opsForList()).thenReturn(listOperations);
         when(listOperations.range("books", 0, 9)).thenReturn(redisList);
 
-        RsponseBookListConsultDTO response = service.consultRecentlyBooks();
+        ResponseBookListConsultDTO response = service.consultRecentlyBooks();
 
         assertNotNull(response);
         assertEquals(2, response.getData().size());  // Distinct elimina duplicado

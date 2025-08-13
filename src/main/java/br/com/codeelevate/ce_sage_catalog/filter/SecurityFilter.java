@@ -1,4 +1,4 @@
-package br.com.codeelevate.ce_sage_catalog.config;
+package br.com.codeelevate.ce_sage_catalog.filter;
 
 import br.com.codeelevate.ce_sage_catalog.repository.UserRepository;
 import br.com.codeelevate.ce_sage_catalog.service.TokenService;
@@ -6,7 +6,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +21,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired private UserRepository userRepository;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = this.recoverToken(request);
         if(token != null){
             String login = tokenService.validateToken(token);

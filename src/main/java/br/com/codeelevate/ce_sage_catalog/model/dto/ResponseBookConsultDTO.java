@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RsponseBookConsultDTO {
+public class ResponseBookConsultDTO {
     private Book data;
 
 }

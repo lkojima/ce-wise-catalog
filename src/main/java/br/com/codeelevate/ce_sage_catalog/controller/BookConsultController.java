@@ -1,7 +1,7 @@
 package br.com.codeelevate.ce_sage_catalog.controller;
 
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookConsultDTO;
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookListConsultDTO;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookConsultDTO;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookListConsultDTO;
 import br.com.codeelevate.ce_sage_catalog.service.BookConsultService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class BookConsultController {
     private static final String HTTP_HEADER_FAPI_INTERACTION_ID = "x-fapi-interaction-id";
 
     @GetMapping(value ="/{bookId}")
-    public ResponseEntity<RsponseBookConsultDTO> getBookById(
+    public ResponseEntity<ResponseBookConsultDTO> getBookById(
             @PathVariable("bookId") String bookId,
             @RequestHeader HttpHeaders httpHeaders) throws JsonProcessingException {
 
@@ -29,7 +29,7 @@ public class BookConsultController {
     }
 
     @GetMapping(value ="/author/{authorName}")
-    public ResponseEntity<RsponseBookListConsultDTO> getBookByAuthorName(
+    public ResponseEntity<ResponseBookListConsultDTO> getBookByAuthorName(
             @PathVariable("authorName") String authorName,
             @RequestHeader HttpHeaders httpHeaders){
 
@@ -39,7 +39,7 @@ public class BookConsultController {
     }
 
     @GetMapping(value ="/genre/{genre}")
-    public ResponseEntity<RsponseBookListConsultDTO> getBookByGenre(
+    public ResponseEntity<ResponseBookListConsultDTO> getBookByGenre(
             @PathVariable("genre") String genre,
             @RequestHeader HttpHeaders httpHeaders){
 
@@ -48,10 +48,10 @@ public class BookConsultController {
                 .body(bookConsultService.consultBookByGenre(genre));
     }
 
-    @GetMapping(value ="")
-    public ResponseEntity<RsponseBookListConsultDTO> getAllBooks(
-            @RequestParam Integer page,
-            @RequestParam Integer pageSize,
+    @GetMapping()
+    public ResponseEntity<ResponseBookListConsultDTO> getAllBooks(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "100000000") Integer pageSize,
             @RequestHeader HttpHeaders httpHeaders){
 
         return ResponseEntity.ok()
@@ -60,7 +60,7 @@ public class BookConsultController {
     }
 
     @GetMapping(value ="/recently")
-    public ResponseEntity<RsponseBookListConsultDTO> getRecentlyBooks(
+    public ResponseEntity<ResponseBookListConsultDTO> getRecentlyBooks(
             @RequestHeader HttpHeaders httpHeaders){
 
         return ResponseEntity.ok()

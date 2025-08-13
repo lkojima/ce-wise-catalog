@@ -1,5 +1,6 @@
 package br.com.codeelevate.ce_sage_catalog.config;
 
+import br.com.codeelevate.ce_sage_catalog.filter.SecurityFilter;
 import br.com.codeelevate.ce_sage_catalog.repository.UserRepository;
 import br.com.codeelevate.ce_sage_catalog.service.TokenService;
 import jakarta.servlet.FilterChain;

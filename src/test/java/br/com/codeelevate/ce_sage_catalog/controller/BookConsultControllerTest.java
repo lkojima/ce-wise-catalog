@@ -3,9 +3,8 @@ package br.com.codeelevate.ce_sage_catalog.controller;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import br.com.codeelevate.ce_sage_catalog.controller.BookConsultController;
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookConsultDTO;
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookListConsultDTO;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookConsultDTO;
+import br.com.codeelevate.ce_sage_catalog.model.dto.ResponseBookListConsultDTO;
 import br.com.codeelevate.ce_sage_catalog.service.BookConsultService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
@@ -36,10 +35,10 @@ class BookConsultControllerTest {
 
     @Test
     void testGetBookById() throws JsonProcessingException {
-        RsponseBookConsultDTO mockResponse = new RsponseBookConsultDTO();
+        ResponseBookConsultDTO mockResponse = new ResponseBookConsultDTO();
         when(bookConsultService.consultBookById("1")).thenReturn(mockResponse);
 
-        ResponseEntity<RsponseBookConsultDTO> response =
+        ResponseEntity<ResponseBookConsultDTO> response =
                 controller.getBookById("1", buildHeaders());
 
         assertEquals(HEADER_VALUE, response.getHeaders().getFirst(HEADER_NAME));
@@ -49,10 +48,10 @@ class BookConsultControllerTest {
 
     @Test
     void testGetBookByAuthorName() {
-        RsponseBookListConsultDTO mockResponse = new RsponseBookListConsultDTO();
+        ResponseBookListConsultDTO mockResponse = new ResponseBookListConsultDTO();
         when(bookConsultService.consultBookByAuthor("Author")).thenReturn(mockResponse);
 
-        ResponseEntity<RsponseBookListConsultDTO> response =
+        ResponseEntity<ResponseBookListConsultDTO> response =
                 controller.getBookByAuthorName("Author", buildHeaders());
 
         assertEquals(HEADER_VALUE, response.getHeaders().getFirst(HEADER_NAME));
@@ -62,10 +61,10 @@ class BookConsultControllerTest {
 
     @Test
     void testGetBookByGenre() {
-        RsponseBookListConsultDTO mockResponse = new RsponseBookListConsultDTO();
+        ResponseBookListConsultDTO mockResponse = new ResponseBookListConsultDTO();
         when(bookConsultService.consultBookByGenre("Fiction")).thenReturn(mockResponse);
 
-        ResponseEntity<RsponseBookListConsultDTO> response =
+        ResponseEntity<ResponseBookListConsultDTO> response =
                 controller.getBookByGenre("Fiction", buildHeaders());
 
         assertEquals(HEADER_VALUE, response.getHeaders().getFirst(HEADER_NAME));
@@ -75,10 +74,10 @@ class BookConsultControllerTest {
 
     @Test
     void testGetAllBooks() {
-        RsponseBookListConsultDTO mockResponse = new RsponseBookListConsultDTO();
+        ResponseBookListConsultDTO mockResponse = new ResponseBookListConsultDTO();
         when(bookConsultService.consultAllBooks(0, 10)).thenReturn(mockResponse);
 
-        ResponseEntity<RsponseBookListConsultDTO> response =
+        ResponseEntity<ResponseBookListConsultDTO> response =
                 controller.getAllBooks(0, 10, buildHeaders());
 
         assertEquals(HEADER_VALUE, response.getHeaders().getFirst(HEADER_NAME));
@@ -88,10 +87,10 @@ class BookConsultControllerTest {
 
     @Test
     void testGetRecentlyBooks() {
-        RsponseBookListConsultDTO mockResponse = new RsponseBookListConsultDTO();
+        ResponseBookListConsultDTO mockResponse = new ResponseBookListConsultDTO();
         when(bookConsultService.consultRecentlyBooks()).thenReturn(mockResponse);
 
-        ResponseEntity<RsponseBookListConsultDTO> response =
+        ResponseEntity<ResponseBookListConsultDTO> response =
                 controller.getRecentlyBooks(buildHeaders());
 
         assertEquals(HEADER_VALUE, response.getHeaders().getFirst(HEADER_NAME));

@@ -1,10 +1,9 @@
 package br.com.codeelevate.ce_sage_catalog.controller;
 
-import br.com.codeelevate.ce_sage_catalog.model.dto.RsponseBookConsultDTO;
 import br.com.codeelevate.ce_sage_catalog.service.BookInsertService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +17,9 @@ public class BookInsertController {
     @Autowired private BookInsertService bookInsertService;
 
     @PostMapping(value ="/books/{genre}")
-    public ResponseEntity<String> getBookById(
+    public ResponseEntity<JsonNode> insertBookByGenre(
             @PathVariable("genre") String genre) throws JsonProcessingException {
-        bookInsertService.insertBooksByAuthor(genre);
-        return ResponseEntity.created(URI.create("/books/"+genre)).body(genre);
+
+        return ResponseEntity.created(URI.create("/books/"+genre)).body(bookInsertService.insertBooksByGenre(genre));
     }
 }

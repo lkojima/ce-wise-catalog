@@ -254,7 +254,7 @@ public class BookInsertServiceImplTest {
                 any(FindAndModifyOptions.class),
                 eq(Counter.class)))
                 .thenReturn(counter);
-        service.insertBooksByAuthor(genre);
+        service.insertBooksByGenre(genre);
 
     }
 }
