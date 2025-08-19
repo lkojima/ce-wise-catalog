@@ -137,7 +137,7 @@ public class BookConsultServiceImplTest {
     void consultBookByAuthorNotFound() throws Exception {
         String bookAuthor = "Author1";
 
-        when(repository.findByAuthor(bookAuthor)).thenReturn(Optional.empty());
+        when(repository.findByAuthor(bookAuthor)).thenReturn(Optional.of(Collections.emptyList()));
 
         NotFoundException thrown = assertThrows(NotFoundException.class, () -> {
             service.consultBookByAuthor(bookAuthor);
@@ -172,7 +172,7 @@ public class BookConsultServiceImplTest {
     void consultBookByGenreNotFound() throws Exception {
         String genre = "Genre1";
 
-        when(repository.findByGenre(genre)).thenReturn(Optional.empty());
+        when(repository.findByGenre(genre)).thenReturn(Optional.of(Collections.emptyList()));
 
         NotFoundException thrown = assertThrows(NotFoundException.class, () -> {
             service.consultBookByGenre(genre);
